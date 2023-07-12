@@ -9,6 +9,7 @@ const mode = false ? 'production' : 'development'
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
 
 /* 
     "build": "webpack --config webpack.prod.js",
@@ -64,6 +65,11 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        CHARLES_ENV: JSON.stringify('CHARLES_ENV')
+      }
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './index.html',
